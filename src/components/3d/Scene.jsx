@@ -1,120 +1,65 @@
 import React, { useRef } from 'react'
 import { Environment } from '@react-three/drei'
 import Monolith from './Monolith'
-import FloatingParticles from './FloatingParticles'
-import CameraRig from './CameraRig'
-import CinematicIntro from './CinematicIntro'
-import CinematicHeroBackground from './CinematicHeroBackground'
+import DotUniverse from './DotUniverse'
+import EngineeringArchitecture3D from './EngineeringArchitecture3D'
+import ProfessionalExperience3D from './ProfessionalExperience3D'
 
 /**
- * 3D Stage & Lighting Setup — Phase 6.5 Step 3.1
- * - Continuous full-screen animated crimson waves & light streaks
- * - Delicate floating embers & atmospheric particles
- * - Monolith preserved in architecture but removed from visible Hero composition (visible={false})
- * - Authoritative CameraRig & CinematicIntro preserved
+ * 3D Scene Architecture — Phase 6.5 New Cinematic Direction
+ * - Immersive Dot Universe with 8,000 celestial points
+ * - Scroll-driven camera pull-back zoom out
+ * - Clean, deep void atmosphere with zero cheap neon or Netflix HUD clutter
+ * - Architecture preserved with high-performance 60 FPS rendering
  */
 export default function Scene({
   deviceTier = 'desktop',
   isMobile = false,
   isTablet = false,
-  reducedMotion = false,
-  introActive = false,
-  introScene = 1,
-  onIntroSceneChange,
-  onIntroComplete
+  reducedMotion = false
 }) {
-  const monolithMacroRef = useRef()
+  const monolithRef = useRef()
 
   return (
     <>
-      {/* 0. Cinematic 3D Intro Sequence (Scenes 1 to 5) */}
-      <CinematicIntro
-        active={introActive}
-        deviceTier={deviceTier}
-        reducedMotion={reducedMotion}
-        onSceneChange={onIntroSceneChange}
-        onComplete={onIntroComplete}
-      />
+      {/* 1. Immersive 3D Dot Universe & Camera Zoom-Out Transition (Part 5, 6.6, 6.7) */}
+      <DotUniverse reducedMotion={reducedMotion} />
 
-      {/* 1. Continuous Full-Screen Cinematic Animated Background Waves */}
-      <CinematicHeroBackground
-        reducedMotion={reducedMotion}
-        introActive={introActive}
-        introScene={introScene}
-      />
+      {/* 2. Phase 6.8: Behind the Build — 3D Digital Architecture Installation */}
+      <EngineeringArchitecture3D reducedMotion={reducedMotion} />
 
-      {/* 2. Delicate Atmospheric Embers & Floating Particles */}
-      <FloatingParticles
-        count={isMobile ? 35 : isTablet ? 50 : 75}
-        reducedMotion={reducedMotion}
-      />
+      {/* 3. Phase 6.9: Professional Experience — 3D Career Journey */}
+      <ProfessionalExperience3D reducedMotion={reducedMotion} />
 
-      {/* 3. Authoritative Camera & Scene Choreographer */}
-      <CameraRig
-        deviceTier={deviceTier}
-        isMobile={isMobile}
-        isTablet={isTablet}
-        reducedMotion={reducedMotion}
-        monolithRef={monolithMacroRef}
-        introActive={introActive && introScene < 5}
-      />
+      {/* 2. Deep Void Ambient & Key Lighting */}
+      <ambientLight intensity={0.4} color="#0f172a" />
 
-      {/* 4. Deep Void Ambient Floor Light */}
-      <ambientLight intensity={0.45} color="#1e293b" />
-
-      {/* 5. Primary Key Light */}
       <directionalLight
-        position={[6, 8, 5]}
-        intensity={2.8}
+        position={[5, 8, 6]}
+        intensity={1.8}
         color="#ffffff"
       />
 
-      {/* 6. Frontal Studio Specular Fill */}
       <directionalLight
-        position={[-1, 2, 6]}
-        intensity={1.5}
-        color="#d1d5db"
+        position={[-6, -2, -4]}
+        intensity={0.8}
+        color="#38bdf8"
       />
 
-      {/* 7. Crimson Rim Light Accent */}
       <directionalLight
-        position={[-6, 2, -4]}
-        intensity={3.6}
-        color="#e50914"
+        position={[0, -5, 2]}
+        intensity={0.5}
+        color="#818cf8"
       />
 
-      {/* 8. Subtle Fill Light */}
-      <directionalLight
-        position={[4, -4, -2]}
-        intensity={1.2}
-        color="#8b5cf6"
-      />
+      {/* 3. Subtle Environment Map for Specular Depth */}
+      <Environment preset="city" environmentIntensity={0.3} />
 
-      {/* 9. Top Cool White Spot for Edge Highlight */}
-      <spotLight
-        position={[0, 9, 3]}
-        angle={0.45}
-        penumbra={1}
-        intensity={1.8}
-        color="#f8fafc"
-      />
-
-      {/* 10. Realistic Physical Reflections via Drei Environment */}
-      <Environment preset="city" environmentIntensity={0.8} />
-
-      {/* 11. Monolith (Preserved for future sections, hidden in Hero per Step 3.1) */}
+      {/* 4. Monolith (Preserved in architecture, kept dormant) */}
       <Monolith
-        ref={monolithMacroRef}
+        ref={monolithRef}
         reducedMotion={reducedMotion}
         visible={false}
-        macroPosition={
-          isMobile
-            ? [0, 0.45, -0.4]
-            : isTablet
-            ? [0.95, 0.1, -0.1]
-            : [1.75, 0, 0]
-        }
-        macroScale={isMobile ? 0.85 : isTablet ? 0.9 : 1}
       />
     </>
   )

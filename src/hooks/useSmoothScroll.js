@@ -32,11 +32,12 @@ export function useSmoothScroll() {
     })
 
     lenisRef.current = lenis
+    window.__lenis = lenis
 
     // Synchronize Lenis scroll updates directly with ScrollTrigger
     lenis.on('scroll', (e) => {
       ScrollTrigger.update()
-      
+
       // Update global scroll progress (0 to 1)
       const progress = e.progress ?? 0
       setScrollProgress(progress)
@@ -63,6 +64,7 @@ export function useSmoothScroll() {
       gsap.ticker.remove(tickerCallback)
       lenis.destroy()
       lenisRef.current = null
+      window.__lenis = null
       ScrollTrigger.getAll().forEach(t => t.kill())
     }
   }, [])

@@ -93,7 +93,7 @@ export default function CanvasContainer({
           position: cameraConfig.position,
           fov: cameraConfig.fov,
           near: 0.1,
-          far: 20
+          far: 300
         }}
         dpr={[1, 1.5]}
         gl={{

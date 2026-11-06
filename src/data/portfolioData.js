@@ -37,11 +37,12 @@ export const verifiedProjects = [
     category: "E-Commerce / Custom Storefront",
     platform: "Shopify",
     website: "https://www.gamingpcworld.com/",
+    image: "/images/projects/gamingpcworld_hero.png",
     technologies: ["Shopify", "Liquid", "CSS", "JavaScript"],
     contribution: "Website development and Shopify theme customization.",
     summary: "High-performance e-commerce platform tailored for high-end custom gaming PC systems and hardware accessories.",
     accentColor: "#00f0ff",
-    badge: "ARCHITECTURAL PREVIEW FRAME // LIVE DEMO AVAILABLE"
+    badge: "PRODUCTION LIVE SHOWCASE // VERIFIED DEPLOYMENT"
   },
   {
     id: "project-02",
@@ -49,11 +50,12 @@ export const verifiedProjects = [
     category: "E-Commerce / Regional Brand Storefront",
     platform: "Shopify",
     website: "https://trupahadi.com/",
+    image: "/images/projects/trupahadi_hero.png",
     technologies: ["Shopify", "Liquid", "CSS", "JavaScript"],
     contribution: "Website development and Shopify theme customization.",
     summary: "Authentic Himalayan and regional lifestyle storefront engineered with customized brand narrative and streamlined checkout flows.",
     accentColor: "#ff9f1c",
-    badge: "ARCHITECTURAL PREVIEW FRAME // LIVE DEMO AVAILABLE"
+    badge: "PRODUCTION LIVE SHOWCASE // VERIFIED DEPLOYMENT"
   }
 ];
 
