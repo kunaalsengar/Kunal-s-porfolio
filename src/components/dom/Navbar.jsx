@@ -1,13 +1,15 @@
 import React from 'react'
 import { personalInfo } from '../../data/portfolioData'
 import SoundToggle from '../ui/SoundToggle'
+import { RotateCcw } from 'lucide-react'
 
-export default function Navbar({ 
-  isScrolled, 
-  scrollProgress, 
-  isPlaying, 
-  onToggleSound, 
-  onNavigate 
+export default function Navbar({
+  isScrolled,
+  scrollProgress,
+  isPlaying,
+  onToggleSound,
+  onNavigate,
+  onReplayIntro
 }) {
   const navLinks = [
     { label: '// ABOUT', href: '#about' },
@@ -23,17 +25,17 @@ export default function Navbar({
   }
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        isScrolled 
-          ? 'py-3 bg-obsidian/85 backdrop-blur-xl border-b border-surface-border shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]' 
+        isScrolled
+          ? 'py-3 bg-obsidian/85 backdrop-blur-xl border-b border-surface-border shadow-[0_10px_30px_-10px_rgba(0,0,0,0.8)]'
           : 'py-5 sm:py-7 bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between">
         {/* Brand identity badge */}
-        <a 
-          href="#hero" 
+        <a
+          href="#hero"
           onClick={(e) => handleLinkClick(e, '#hero')}
           className="group flex items-center gap-3 select-none"
           data-cursor="pointer"
@@ -66,8 +68,21 @@ export default function Navbar({
           ))}
         </nav>
 
-        {/* Right Action Cluster: Status + Sound Toggle */}
-        <div className="flex items-center gap-3">
+        {/* Right Action Cluster: Replay Intro + Status + Sound Toggle */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {onReplayIntro && (
+            <button
+              onClick={onReplayIntro}
+              data-cursor="pointer"
+              title="Replay Cinematic Intro"
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface/60 hover:bg-surface border border-surface-border hover:border-red-500/50 text-[10px] font-mono text-titanium hover:text-white transition-all duration-200"
+              aria-label="Replay cinematic intro"
+            >
+              <RotateCcw className="w-3 h-3 text-red-500" />
+              <span className="hidden sm:inline">REPLAY INTRO</span>
+            </button>
+          )}
+
           <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-surface/60 border border-surface-border text-[10px] font-mono text-titanium">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span>SYS.ONLINE</span>
@@ -79,7 +94,7 @@ export default function Navbar({
 
       {/* Real-time Global Scroll Progress Bar */}
       <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-transparent overflow-hidden">
-        <div 
+        <div
           className="h-full bg-gradient-to-r from-accent-purple via-accent-cyan to-white transition-all duration-100 ease-out shadow-[0_0_8px_#00f0ff]"
           style={{ width: `${Math.min(100, Math.max(0, scrollProgress * 100))}%` }}
         />

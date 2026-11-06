@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { personalInfo } from '../../data/portfolioData'
 import MagneticButton from '../ui/MagneticButton'
-import { 
-  Mail, 
-  Send, 
-  Copy, 
-  Check, 
+import {
+  Mail,
+  Send,
+  Copy,
+  Check,
   Terminal,
   ShieldCheck,
   Sparkles
@@ -94,9 +94,9 @@ export default function Contact() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Cinematic Portrait + Direct Email Channels + Social Links */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="lg:col-span-5 space-y-6 w-full">
           {/* Cinematic Portrait Frame (b2affbd4-f396-4bee-8ec8-6cecfae347ff.jpg) */}
-          <div className="relative glass-panel rounded-2xl p-2.5 sm:p-3 border border-surface-border overflow-hidden group">
+          <div className="relative glass-panel rounded-2xl p-2.5 sm:p-3 border border-surface-border overflow-hidden group max-w-sm sm:max-w-md mx-auto lg:max-w-none w-full">
             {/* Ambient Spot Glow */}
             <div className="absolute top-0 right-0 w-48 h-48 bg-accent-cyan/15 rounded-full blur-3xl pointer-events-none" />
 
@@ -132,7 +132,7 @@ export default function Contact() {
                 <Mail className="w-4 h-4 text-accent-cyan shrink-0" />
                 <div className="min-w-0">
                   <span className="text-[10px] font-mono text-titanium block">PRIMARY INQUIRIES</span>
-                  <a 
+                  <a
                     href={`mailto:${personalInfo.primaryEmail}`}
                     className="text-xs sm:text-sm font-mono text-white hover:text-accent-cyan truncate block transition-colors"
                   >
@@ -160,7 +160,7 @@ export default function Contact() {
                 <Mail className="w-4 h-4 text-accent-amber shrink-0" />
                 <div className="min-w-0">
                   <span className="text-[10px] font-mono text-titanium block">SECONDARY / DIRECT</span>
-                  <a 
+                  <a
                     href={`mailto:${personalInfo.secondaryEmail}`}
                     className="text-xs sm:text-sm font-mono text-white hover:text-accent-amber truncate block transition-colors"
                   >
@@ -226,7 +226,7 @@ export default function Contact() {
         </div>
 
         {/* Right Column: Pre-filled Mailto Transmission Form */}
-        <div className="lg:col-span-7 glass-panel p-6 sm:p-10 rounded-2xl border border-surface-border space-y-6">
+        <div className="lg:col-span-7 glass-panel p-4 sm:p-8 md:p-10 rounded-2xl border border-surface-border space-y-6">
           <div className="border-b border-surface-border pb-4 space-y-1">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-xl font-bold text-white">

@@ -18,13 +18,20 @@ function isWebGLAvailable() {
 /**
  * Persistent Full-Viewport 3D Canvas Layer
  * - Fixed background architecture (z-0, pointer-events-none)
- * - Hardware-accelerated WebGL with DPR clamping
+ * - Three-tier responsive adaptation: mobile (<768px), tablet (768-1023px), desktop (>=1024px)
+ * - Hardware-accelerated WebGL with DPR clamping [1, 1.5]
  * - Tracks client mouse events anywhere on the page via eventSource
  * - Graceful WebGLFallback for unsupported systems
  */
-export default function CanvasContainer({ className = "" }) {
+export default function CanvasContainer({
+  className = "",
+  introActive = false,
+  introScene = 1,
+  onIntroSceneChange,
+  onIntroComplete
+}) {
   const [hasWebGL, setHasWebGL] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
+  const [deviceTier, setDeviceTier] = useState('desktop') // 'mobile' | 'tablet' | 'desktop'
   const [reducedMotion, setReducedMotion] = useState(false)
   const [rootElement, setRootElement] = useState(null)
 
@@ -35,11 +42,18 @@ export default function CanvasContainer({ className = "" }) {
       return
     }
 
-    // 2. Responsive mobile check
-    const mobileCheck = () => {
-      setIsMobile(window.innerWidth < 768)
+    // 2. Multi-tier device breakpoint evaluation
+    const evaluateDeviceTier = () => {
+      const w = window.innerWidth
+      if (w < 768) {
+        setDeviceTier('mobile')
+      } else if (w < 1024) {
+        setDeviceTier('tablet')
+      } else {
+        setDeviceTier('desktop')
+      }
     }
-    mobileCheck()
+    evaluateDeviceTier()
 
     // 3. Accessibility reduced motion check
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -48,7 +62,7 @@ export default function CanvasContainer({ className = "" }) {
     // 4. Attach event source for global mouse tracking
     setRootElement(document.getElementById('root'))
 
-    const handleResize = () => mobileCheck()
+    const handleResize = () => evaluateDeviceTier()
     window.addEventListener('resize', handleResize, { passive: true })
 
     return () => {
@@ -64,14 +78,20 @@ export default function CanvasContainer({ className = "" }) {
     )
   }
 
+  const cameraConfig = {
+    mobile: { position: [0, 0, 6.4], fov: 46 },
+    tablet: { position: [0, 0, 5.8], fov: 44 },
+    desktop: { position: [0, 0, 5.2], fov: 42 }
+  }[deviceTier] || { position: [0, 0, 5.2], fov: 42 }
+
   return (
     <div className={`fixed inset-0 z-0 pointer-events-none overflow-hidden ${className}`}>
       <Canvas
         eventSource={rootElement || undefined}
         eventPrefix="client"
         camera={{
-          position: [0, 0, isMobile ? 6.4 : 5.2],
-          fov: isMobile ? 46 : 42,
+          position: cameraConfig.position,
+          fov: cameraConfig.fov,
           near: 0.1,
           far: 20
         }}
@@ -86,7 +106,16 @@ export default function CanvasContainer({ className = "" }) {
         className="w-full h-full"
       >
         <Suspense fallback={null}>
-          <Scene isMobile={isMobile} reducedMotion={reducedMotion} />
+          <Scene
+            deviceTier={deviceTier}
+            isMobile={deviceTier === 'mobile'}
+            isTablet={deviceTier === 'tablet'}
+            reducedMotion={reducedMotion}
+            introActive={introActive}
+            introScene={introScene}
+            onIntroSceneChange={onIntroSceneChange}
+            onIntroComplete={onIntroComplete}
+          />
         </Suspense>
       </Canvas>
     </div>

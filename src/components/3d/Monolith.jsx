@@ -14,7 +14,7 @@ import * as THREE from 'three'
  *   - Zero property collision between animation systems
  */
 const Monolith = forwardRef(function Monolith(
-  { reducedMotion = false, macroPosition = [0, 0, 0], macroRotation = [0, 0, 0], macroScale = 1 },
+  { reducedMotion = false, macroPosition = [0, 0, 0], macroRotation = [0, 0, 0], macroScale = 1, visible = true },
   forwardedRef
 ) {
   // Outer macro group ref (can be forwarded from parent / CameraRig)
@@ -140,11 +140,12 @@ const Monolith = forwardRef(function Monolith(
 
   return (
     // Outer Macro Group (Controlled by macro choreography / scroll controller)
-    <group 
-      ref={macroGroupRef} 
-      position={macroPosition} 
+    <group
+      ref={macroGroupRef}
+      position={macroPosition}
       rotation={macroRotation}
       scale={macroScale}
+      visible={visible}
     >
       {/* Inner Micro Group (Controlled strictly by useFrame physics & mouse parallax) */}
       <group ref={microGroupRef} position={[0, 0, 0]}>

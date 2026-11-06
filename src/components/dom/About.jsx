@@ -19,12 +19,12 @@ export default function About() {
       {/* Main Grid: Portrait + Narrative */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: Main About Portrait (IMG_3233.jpg) */}
-        <div className="lg:col-span-5 relative group">
+        <div className="lg:col-span-5 relative group max-w-sm sm:max-w-md mx-auto lg:max-w-none w-full">
           {/* Subtle Ambient Halo */}
           <div className="absolute inset-0 bg-accent-cyan/10 rounded-2xl blur-2xl group-hover:bg-accent-cyan/20 transition-all duration-500 pointer-events-none" />
 
           {/* Photo Frame Container */}
-          <div 
+          <div
             data-cursor="text"
             data-cursor-text="KUNAL"
             className="relative glass-panel rounded-2xl p-2.5 sm:p-3 border border-surface-border overflow-hidden group-hover:border-accent-cyan/40 transition-all duration-500"

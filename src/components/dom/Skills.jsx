@@ -32,7 +32,7 @@ export default function Skills() {
         {skillCategories.map((group, index) => (
           <div
             key={group.category}
-            className={`glass-panel p-6 rounded-2xl border border-surface-border hover:border-surface-hover hover:glass-panel-glow transition-all duration-300 flex flex-col justify-between space-y-5 ${
+            className={`glass-panel p-4 sm:p-6 rounded-2xl border border-surface-border hover:border-surface-hover hover:glass-panel-glow transition-all duration-300 flex flex-col justify-between space-y-5 ${
               index === 0 ? "md:col-span-2 lg:col-span-1" : ""
             }`}
           >

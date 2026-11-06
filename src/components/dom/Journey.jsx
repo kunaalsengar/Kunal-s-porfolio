@@ -20,19 +20,19 @@ export default function Journey() {
       </div>
 
       {/* Timeline Nodes */}
-      <div className="space-y-8 relative before:absolute before:inset-0 before:left-4 sm:before:left-8 before:w-[1px] before:bg-surface-border">
+      <div className="space-y-8 relative before:absolute before:inset-0 before:left-3 sm:before:left-6 before:w-[1px] before:bg-surface-border">
         {journeyTimeline.map((item, index) => (
-          <div 
-            key={index} 
-            className="relative pl-10 sm:pl-16 space-y-4"
+          <div
+            key={index}
+            className="relative pl-8 sm:pl-14 space-y-4"
           >
             {/* Timeline Node Icon Indicator */}
-            <div className="absolute left-2 sm:left-6 -translate-x-1/2 top-1.5 w-5 h-5 rounded-full bg-surface border-2 border-accent-cyan flex items-center justify-center shadow-[0_0_12px_rgba(0,240,255,0.4)]">
+            <div className="absolute left-3 sm:left-6 -translate-x-1/2 top-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-surface border-2 border-accent-cyan flex items-center justify-center shadow-[0_0_12px_rgba(0,240,255,0.4)]">
               <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan" />
             </div>
 
             {/* Card Content */}
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-surface-border hover:border-surface-hover hover:glass-panel-glow transition-all duration-300 space-y-4">
+            <div className="glass-panel p-4 sm:p-7 md:p-8 rounded-2xl border border-surface-border hover:border-surface-hover hover:glass-panel-glow transition-all duration-300 space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-surface-border pb-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 text-xs font-mono text-accent-cyan uppercase">

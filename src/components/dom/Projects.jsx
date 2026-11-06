@@ -34,14 +34,14 @@ export default function Projects() {
             key={project.id}
             data-cursor="text"
             data-cursor-text="VISIT"
-            className="group glass-panel rounded-2xl p-6 sm:p-8 border border-surface-border hover:border-accent-cyan/40 hover:glass-panel-glow transition-all duration-500 flex flex-col justify-between space-y-6"
+            className="group glass-panel rounded-2xl p-4 sm:p-8 border border-surface-border hover:border-accent-cyan/40 hover:glass-panel-glow transition-all duration-500 flex flex-col justify-between space-y-6"
           >
             {/* Top Meta Bar */}
             <div className="flex items-center justify-between border-b border-surface-border pb-4">
               <div className="flex items-center gap-2">
-                <span 
-                  className="w-2.5 h-2.5 rounded-full" 
-                  style={{ backgroundColor: project.accentColor }} 
+                <span
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: project.accentColor }}
                 />
                 <span className="font-mono text-xs text-chrome font-semibold">
                   {project.platform}
@@ -71,7 +71,7 @@ export default function Projects() {
               {/* Mockup Canvas Graphic */}
               <div className="h-44 sm:h-52 relative rounded-lg bg-surface/50 border border-surface-border/40 flex flex-col items-center justify-center p-6 text-center space-y-3 overflow-hidden">
                 {/* Background Grid Pattern */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-[0.05]"
                   style={{
                     backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
@@ -80,7 +80,7 @@ export default function Projects() {
                 />
 
                 {/* Subtle Brand Accent Glow */}
-                <div 
+                <div
                   className="absolute w-36 h-36 rounded-full blur-3xl opacity-20 pointer-events-none"
                   style={{ backgroundColor: project.accentColor }}
                 />
